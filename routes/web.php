@@ -62,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/Profil', [ProfilController::class, 'index_profil'])->name('index_profil');
         Route::get('/suiviactiveoui', [ProfilController::class, 'suivi_oui']);
         Route::get('/suiviactivenon', [ProfilController::class, 'suivi_non']);
-        Route::get('/mdp_update', [ProfilController::class, 'mdp_update']);
+        Route::post('/mdp_update', [ProfilController::class, 'mdp_update'])->name('mdp_update');
         Route::get('/info_update', [ProfilController::class, 'info_update']);
     /*----------------------------------------------------------------------------------------------------------------------------*/
 

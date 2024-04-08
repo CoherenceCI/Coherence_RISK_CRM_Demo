@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                         @else
-                            <form class="nk-block" id="registration" method="post" action="{{ route('index_risque_actionup2_traitement') }}" enctype="multipart/form-data">
+                            <form class="nk-block" id="form" method="post" action="{{ route('index_risque_actionup2_traitement') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row g-gs">
 

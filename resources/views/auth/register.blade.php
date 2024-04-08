@@ -148,19 +148,55 @@
                 return false;
             }
 
-            if (password1 !== password2) {
-                toastr.error("Les mots de passe ne correspondent pas.");
-                return false;
-            }
-
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expression régulière pour valider l'e-mail
             if (!emailRegex.test(email)) {
                 toastr.info("Veuillez saisir une adresse e-mail valide.");
                 return false;
             }
 
+            if (password1 !== password2) {
+                toastr.error("Les mots de passe ne correspondent pas.");
+                return false;
+            }
+            
+            if (password1 === password2) {
+                // Vérification si le mot de passe satisfait les critères
+                if (!verifierMotDePasse(password1) || !verifierMotDePasse(password2) ) {
+                    // Afficher un message d'erreur
+                    toastr.info("Le mot de passe doit comporter au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre.");
+                    return false;
+                }
+
+            }
+
             // Si toutes les validations passent, soumettre le formulaire
             this.submit();
+
+            function verifierMotDePasse(motDePasse) {
+                // Vérification de la longueur
+                if (motDePasse.length < 8) {
+                    return false;
+                }
+
+                // Vérification s'il contient au moins une lettre majuscule
+                if (!/[A-Z]/.test(motDePasse)) {
+                    return false;
+                }
+
+                // Vérification s'il contient au moins une lettre minuscule
+                if (!/[a-z]/.test(motDePasse)) {
+                    return false;
+                }
+
+                // Vérification s'il contient au moins un chiffre
+                if (!/\d/.test(motDePasse)) {
+                    return false;
+                }
+
+                // Si toutes les conditions sont satisfaites, le mot de passe est valide
+                return true;
+            }
+
         });
     </script>
 

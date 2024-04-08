@@ -184,11 +184,11 @@
                             <h4 class="nk-modal-title">Confirmation</h4>
                             <div class="nk-modal-text">
                                 <div class="caption-text">
-                                    <span> Voulez-vous vraiment supprimer cet incident ?</span>
+                                    <span> Voulez-vous vraiment supprimer cet risque ?</span>
                                 </div>
                             </div>
                             <div class="nk-modal-action">
-                                <a href="/risque_delete/{{ $risque->id }}" class="btn btn-lg btn-mw btn-success me-2">
+                                <a id="form_click" href="/risque_delete/{{ $risque->id }}" class="btn btn-lg btn-mw btn-success me-2">
                                     oui
                                 </a>
                                 <a href="#" class="btn btn-lg btn-mw btn-danger"data-bs-dismiss="modal">

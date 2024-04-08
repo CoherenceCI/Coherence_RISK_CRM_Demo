@@ -33,6 +33,8 @@ use Carbon\Carbon;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+use Illuminate\Support\Str;
+
 class ResetpasswordController extends Controller
 {
     public function verif_email($email)
@@ -42,10 +44,12 @@ class ResetpasswordController extends Controller
 
         if ($user) {
 
-            $verif_code = rand(100, 999) . '-' . rand(100, 999);
-            // Generate a verification code
-            $hpass = "1234";
-            $pass = password_hash("1234", PASSWORD_DEFAULT);
+            $password = Str::random(10);
+            // Vérifie si le mot de passe contient au moins une lettre majuscule, une lettre minuscule et un chiffre
+            while (!preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password) || !preg_match('/[0-9]/', $password)) {
+                $password = Str::random(10); // Génère un nouveau mot de passe si les critères ne sont pas satisfaits
+            }
+            $pass = bcrypt($password);
             // Check if a verification code already exists for the user
             $user->password = $pass;
             $user->save();
@@ -66,7 +70,7 @@ class ResetpasswordController extends Controller
             $mail->Body = 'Cher/Chère '. $user->name .' ! <br><br>'.'<br>'
                         . 'Vous avez oublié votre mot de passe, pas de panique <br>'
                         . 'Nous avons généré un mot de passe qui vous permettra de récupéré votre compte, veuillez utiliser le nouveau Mot de passe ci-dessous :<br>'
-                        . 'Mot de passe : '. $hpass .'<br>'
+                        . 'Mot de passe : '. $password .'<br>'
                         . 'NB : Une fois connecté, Vous avez la possibilié de soite modifier le mot de passe dans les paramétre de sécurité ou conserver le mot de passe généré.';
             // Envoi de l'email
             $mail->send();

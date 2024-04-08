@@ -456,7 +456,7 @@ class ListerisqueController extends Controller
 
         $delete5 = Risque::where('id', '=', $id)->delete();
 
-        if($delete1 && $delete2 && $delete3 && $delete4 && $delete5)
+        if($delete1 && $delete2 && $delete3 && $delete5)
         {
             return redirect()->back()->with('success', 'Suppression éffectuée.');
         }

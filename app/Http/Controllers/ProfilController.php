@@ -75,19 +75,22 @@ class ProfilController extends Controller
 
     public function mdp_update(Request $request)
     {
-        
+        if( $request->password !== $request->password2){
+            return back()->with('error' , 'Mot de passe incorrecte');
+        }
+
         $user = User::find(Auth::user()->id);
 
         if ($user) {
             $user->update([
-                'password' => Hash::make($request->input('mdp2')),
+                'password' => bcrypt($request->password),
                 'mdp_date' => now(),
             ]);
 
-            return response()->json(['success' => true]);
+            return back()->with('success' , 'Mot de passe modifié');
         }
 
-        return response()->json(['error' => true]);
+        return back()->with('error' , 'Echec de la modification');
     }
 
     public function info_update(Request $request)

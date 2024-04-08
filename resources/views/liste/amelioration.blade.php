@@ -534,7 +534,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="nk-block">
-                            <form class="row g-gs" method="post" action="{{ route('eff_recla') }}">
+                            <form id="form" class="row g-gs" method="post" action="{{ route('eff_recla') }}">
                                 @csrf
                                 <input type="text" name="amelioration_id" value="{{ $am->id }}" style="display: none;">
                                 <div class="col-lg-12 col-xxl-12">
@@ -609,7 +609,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="nk-block">
-                            <form class="row g-gs" method="post" action="{{ route('date_recla') }}">
+                            <form id="form" class="row g-gs" method="post" action="{{ route('date_recla') }}">
                                 @csrf
                                 <input type="text" name="amelioration_id" value="{{ $am->id }}" style="display: none;">
                                 <div class="col-lg-12 col-xxl-12">

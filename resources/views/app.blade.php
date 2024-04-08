@@ -458,45 +458,43 @@
         }
     </style>
 
-
-        <!--<div class="modal fade" tabindex="-1" id="modalAlert2" aria-modal="true" style="position: fixed;" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body modal-body-lg text-center">
-                        <div class="nk-modal">
-                            <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-cross bg-danger"></em>
-                            <h4 class="nk-modal-title">Session a éxpiré !</h4>
-                            <div class="nk-modal-action mt-5">
-                                <form class="login-form">
-                                    <div class="form-group">
-                                        <a class="btn btn-lg btn-mw btn-light" id="logoutBtn">
-                                            ok
-                                        </a>
-                                    </div>
-                                </form>
-                            </div>
+<div class="modal fade" tabindex="-1" id="modalt" aria-modal="true" style="position: fixed;" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal-body-lg text-center">
+                <div class="nk-modal">
+                    <h5 class="nk-modal-title">Traitement en cours</h5>
+                    <div class="nk-modal-text">
+                        <div class="text-center">
+                            <div class="spinner-border text-warning" role="status"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+    <script>
+        document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
-        <script>
-            // Fonction pour rafraîchir la page
-            function refreshPage() {
-                $('#modalAlert2').modal('show');
-            }
+            $('.modal').modal('hide');
+            $(`#modalt`).modal('hide');
+            $(`#modalt`).modal('show');
 
-            // Rafraîchir la page toutes les 5 minutes (300 000 millisecondes)
-            setInterval(refreshPage, 600000);
-        </script>
+            // Si toutes les validations passent, soumettre le formulaire
+            this.submit();
+        });
+    </script>
+    <script>
+        document.getElementById("form_click").addEventListener("click", function(event) {
 
-        <script>
-            document.getElementById('logoutBtn').addEventListener('click', function(event) {
-                event.preventDefault(); // Pour éviter le comportement par défaut du lien
-                window.location.reload();
-            });
-        </script>-->
+            $('.modal').modal('hide');
+            $(`#modalt`).modal('hide');
+            $(`#modalt`).modal('show');
+
+        });
+    </script>
 
         <script>
             document.getElementById('ajouter-poste').addEventListener('click', function(event) {

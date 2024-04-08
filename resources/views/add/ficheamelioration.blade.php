@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                         @else
-                            <form class="nk-block" id="registration" method="post" action="{{ route('index_add') }}">
+                            <form class="nk-block" id="form" method="post" action="{{ route('index_add') }}">
                                 @csrf
                                 <div class="row g-gs">
 
@@ -1143,35 +1143,6 @@
     var postes = @json($postes);
     var processuss = @json($processuss);
 </script>
-
-        <div class="modal fade" tabindex="-1" id="modalLoad" aria-modal="true" role="dialog">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body modal-body-lg text-center">
-                        <div class="nk-modal">
-                            <h5 class="nk-modal-title">Vérification des données</h5>
-                            <div class="nk-modal-text">
-                                <div class="text-center">
-                                    <div class="spinner-border text-warning" role="status"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            document.getElementById("registration").addEventListener("submit", function(event) {
-
-                $('.modal').modal('hide');
-                $(`#modalLoad`).modal('hide');
-                $(`#modalLoad`).modal('show');
-
-                // Si toutes les validations passent, soumettre le formulaire
-                this.submit();
-            });
-        </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

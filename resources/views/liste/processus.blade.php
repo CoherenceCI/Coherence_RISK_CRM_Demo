@@ -242,7 +242,7 @@
                                     <div class="col-lg-12 col-xxl-12 "  >
                                         <div class="card">
                                             <div class="card-inner">
-                                                <form id="processus-form" method="post" action="{{ route('processus_modif') }}" enctype="multipart/form-data">
+                                                <form id="form" method="post" action="{{ route('processus_modif') }}" enctype="multipart/form-data">
                                                     @csrf
                                                     <input name="id" value="{{ $processu->id }}" type="text" class="form-control" style="display: none;">
                                                     <div class="row g-4 mb-4" id="objectifs-container" >

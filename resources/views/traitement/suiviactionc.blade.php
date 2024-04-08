@@ -223,7 +223,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="nk-block">
-                            <form class="row g-gs" id="registration" method="post" action="/Suivi_actionc/{{ $am->id }}">
+                            <form class="row g-gs" id="form" method="post" action="/Suivi_actionc/{{ $am->id }}">
                                 @csrf
                                 <div class="col-lg-12 col-xxl-12" >
                                     <div class="card">
@@ -320,37 +320,6 @@
             </div>
         </div>
     @endforeach
-
-        <div class="modal fade" tabindex="-1" id="modalLoad" aria-modal="true" role="dialog">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body modal-body-lg text-center">
-                        <div class="nk-modal">
-                            <h5 class="nk-modal-title">Vérification des données</h5>
-                            <div class="nk-modal-text">
-                                <div class="text-center">
-                                    <div class="spinner-border text-warning" role="status"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            document.getElementById("registration").addEventListener("submit", function(event) {
-                event.preventDefault(); // Empêche la soumission par défaut du formulaire
-
-                $('.modal').modal('hide');
-                $(`#modalLoad`).modal('hide');
-                $(`#modalLoad`).modal('show');
-
-                // Si toutes les validations passent, soumettre le formulaire
-                this.submit();
-            });
-        </script>
-
 
     <script>
         Pusher.logToConsole = true;
