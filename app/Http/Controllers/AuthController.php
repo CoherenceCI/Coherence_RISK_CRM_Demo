@@ -18,6 +18,8 @@ use Carbon\Carbon;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+use Illuminate\Support\Facades\Session;
+
 class AuthController extends Controller
 {
     public function dashboard()
@@ -59,6 +61,8 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+
+            Session::forget('url.intended');
 
             //Auth::logoutOtherDevices($request->password);
             

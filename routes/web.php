@@ -24,7 +24,6 @@ use App\Http\Controllers\RisqueController;
 use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\ResetpasswordController;
 
-
 /*--Connexion---------------------------------------------------------------------------------------------------------------*/
     Route::get('/Login', [AuthController::class, 'view_login'])->name('login');
     Route::post('/auth_user', [AuthController::class, 'auth_user']);

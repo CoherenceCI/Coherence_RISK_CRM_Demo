@@ -45,7 +45,7 @@
                         <div class="nk-header-menu ms-auto" data-content="headerNav">
                             <div class="nk-header-mobile">
                                 <div class="nk-header-brand">
-                                    <a class="logo-link" href="index-2.html">
+                                    <a class="logo-link" href="{{ route('index_accueil') }}">
                                         <img alt="logo-dark" class="logo-dark logo-img" src="images/logo.png"
                                             srcset="/images/logo.png 2x">
                                         </img>
@@ -458,22 +458,23 @@
         }
     </style>
 
-<div class="modal fade" tabindex="-1" id="modalt" aria-modal="true" style="position: fixed;" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-body modal-body-lg text-center">
-                <div class="nk-modal">
-                    <h5 class="nk-modal-title">Traitement en cours</h5>
-                    <div class="nk-modal-text">
-                        <div class="text-center">
-                            <div class="spinner-border text-warning" role="status"></div>
+    <div class="modal fade" tabindex="-1" id="modalt" aria-modal="true" style="position: fixed;" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body modal-body-lg text-center">
+                    <div class="nk-modal">
+                        <h5 class="nk-modal-title">Traitement en cours</h5>
+                        <div class="nk-modal-text">
+                            <div class="text-center">
+                                <div class="spinner-border text-warning" role="status"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
     <script>
         document.getElementById("form").addEventListener("submit", function(event) {
             event.preventDefault(); // Empêche la soumission par défaut du formulaire
@@ -496,35 +497,45 @@
         });
     </script>
 
-        <script>
-            document.getElementById('ajouter-poste').addEventListener('click', function(event) {
-                event.preventDefault();
-                const container = document.getElementById('poste-container');
-                const div = document.createElement('div');
-                div.classList.add('col-lg-12');
-                div.innerHTML = `
-                <div class="row g-g2" >
-                    <div class=" col-md-12 form-group">
-                        <div class="form-control-wrap">
-                            <input placeholder="Saisie obligatoire" autocomplete="off" required type="text" class="form-control text-center objectif me-2" name="nom[]" oninput="this.value = this.value.toUpperCase()">
-                        </div>
-                    </div>
-                    <div class=" col-md-12 form-group text-center">
-                        <div class="form-control-wrap">
-                            <button type="button" class="btn btn-danger btn-dim text-center btn-remove-poste">
-                                <em class="ni ni-trash me-2"></em>
-                                <em>Supprimer</em>
-                            </button>
+        <div class="modal fade" tabindex="-1" id="modalAlert2" aria-modal="true" style="position: fixed;" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body modal-body-lg text-center">
+                        <div class="nk-modal">
+                            <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-cross bg-danger"></em>
+                            <h4 class="nk-modal-title">Session a éxpiré !</h4>
+                            <div class="nk-modal-action mt-5">
+                                <form class="login-form">
+                                    <div class="form-group">
+                                        <a class="btn btn-lg btn-mw btn-light" id="logoutBtn">
+                                            ok
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                `;
-                container.appendChild(div);
+            </div>
+        </div>
 
-                // Ajouter un écouteur d'événement pour supprimer l'objectif
-                div.querySelector('.btn-remove-poste').addEventListener('click', function() {
-                    container.removeChild(div);
-                });
+        <script>
+            document.getElementById('logoutBtn').addEventListener('click', function(event) {
+                event.preventDefault(); // Pour éviter le comportement par défaut du lien
+                window.location.reload();
+            });
+        </script>
+
+        <script>
+            // Cette fonction affiche le modal après un délai de 2 minutes
+            function afficherModalApresDelai() {
+                $('.modal').modal('hide'); // Assurez-vous que les modaux précédents sont masqués
+                $('#modalAlert2').modal('show'); // Affiche le modal spécifié
+                // Vous pouvez également ajouter d'autres opérations à effectuer après l'affichage du modal ici
+            }
+            // Utilise setTimeout() pour déclencher la fonction après un délai de 2 minutes
+            document.addEventListener("DOMContentLoaded", function() {
+                setTimeout(afficherModalApresDelai, 900000); // 900000 millisecondes = 15 minutes
             });
         </script>
 
