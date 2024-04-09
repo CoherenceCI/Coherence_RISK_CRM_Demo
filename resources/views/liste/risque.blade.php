@@ -223,7 +223,7 @@
                                                                             </a>
                                                                             @if($risque->pdf_nom)
                                                                             <a href="{{ asset('storage/pdf/' . $risque->pdf_nom) }}" 
-                                                                                href="#" class="btn btn-icon btn-white btn-dim btn-sm btn-info border border-1 border-white rounded">
+                                                                                target="_bank" class="btn btn-icon btn-white btn-dim btn-sm btn-info border border-1 border-white rounded">
                                                                                 <em class="icon ni ni-download"></em>
                                                                             </a>
                                                                             @endif

@@ -86,19 +86,21 @@
                                                                         <em class="icon ni ni-list-thumb"></em>
                                                                     </a>
                                                                     @endif
-                                                                    <a data-bs-toggle="modal"
-                                                                        data-bs-target="#modalModif{{$processu->id}}"
-                                                                        href="#" class="btn btn-icon btn-white btn-dim btn-sm btn-info border border-1 border-white rounded">
-                                                                        <em class="icon ni ni-edit"></em>
-                                                                    </a>
                                                                     @if($processu->pdf_nom != null)
-                                                                    <a href="{{ asset('storage/pdf/'.$processu->pdf_nom) }}" 
-                                                                        href="#" class="btn btn-icon btn-white btn-dim btn-sm btn-info border border-1 border-white rounded">
+                                                                    <a href="{{ asset('storage/pdf/'.$processu->pdf_nom) }} " target="_bank" 
+                                                                        class="btn btn-icon btn-white btn-dim btn-sm btn-info border border-1 border-white rounded">
                                                                         <em class="icon ni ni-download"></em>
                                                                     </a>
                                                                     @endif
                                                                     <button class="btn btn-icon btn-white btn-dim btn-sm btn-primary">
                                                                         <em class="icon ni ni-printer-fill"></em>
+                                                                    </button>
+                                                                </form>
+                                                                <form method="post" action="{{ route('index_processus_modif') }}">
+                                                                    @csrf
+                                                                    <input type="text" name="id" value="{{$processu->id}}" style="display: none;">
+                                                                    <button class="btn btn-icon btn-white btn-dim btn-sm btn-primary">
+                                                                        <em class="icon ni ni-edit"></em>
                                                                     </button>
                                                                 </form>
                                                             </div>

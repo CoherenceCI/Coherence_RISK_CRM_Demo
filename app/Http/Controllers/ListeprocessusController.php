@@ -91,8 +91,45 @@ class ListeprocessusController extends Controller
         return view('liste.processus', ['processus' => $processus, 'objectifData' => $objectifData, 'risqueData' => $risqueData]);
     }
 
+    public function index_processus_modif(Request $request)
+    {
+        $processu = Processuse::find($request->id);
+
+        $objectifData = [];
+
+        if ($processu) {
+
+            $pdf = Pdf_file_processus::where('processus_id', $processu->id)->first();
+            if ($pdf) {
+                $processu->pdf_nom = $pdf->pdf_nom;
+                $processu->pdf_chemin = $pdf->pdf_chemin;
+            } else {
+                // Gérer le cas où aucun enregistrement n'est trouvé
+                $processu->pdf_nom = null;
+                $processu->pdf_chemin = null; // Ou définissez-le comme vous le souhaitez
+            }
+
+            $processu->nbre = Objectif::where('processus_id', $processu->id)->count();
+            $objectifs = Objectif::where('processus_id', $processu->id)->get();
+
+            $objectifData[$processu->id] = [];
+            foreach($objectifs as $objectif)
+            {
+                $objectifData[$processu->id][] = [
+                    'objectif' => $objectif->nom,
+                    'id' => $objectif->id,
+                ];
+            }
+        }
+
+        $pdfFiles = Pdf_file_processus::all();
+
+        return view('liste.processus_modif', ['processu' => $processu, 'objectifData' => $objectifData, 'pdfFiles' => $pdfFiles]);
+    }
+
     public function processus_modif(Request $request)
     {
+        //dd($request->all());
 
         $nomProcessus = $request->input('nprocessus');
         $descriptionProcessus = $request->input('description');
@@ -142,7 +179,6 @@ class ListeprocessusController extends Controller
                 $nouvelObjectif->save();
             }else {
                 $rech = Objectif::find($id_objectifs[$index]);
-
                 if ($rech) {
 
                     $rech->nom = $objectifs[$index];
@@ -153,10 +189,12 @@ class ListeprocessusController extends Controller
 
         $id_suppr = $request->input('id_suppr');
         $suppr = $request->input('suppr');
-
-        foreach ($id_suppr as $index => $valeur) {
-            if (isset($suppr[$index]) && $suppr[$index] === 'oui') {
-                        $suppr = Objectif::where('id', $valeur)->delete();
+        
+        if ($suppr && is_array($suppr)) {
+            foreach ($suppr as $index => $valeur) {
+                if ($valeur === 'oui' && isset($id_suppr[$index])) {
+                    $delete = Objectif::where('id', $id_suppr[$index])->delete();
+                }
             }
         }
 
@@ -168,10 +206,10 @@ class ListeprocessusController extends Controller
             $his->user_id = Auth::user()->id;
             $his->save();
 
-            return redirect()->back()->with('success', 'Mise à jour éffectuée.');
+            return redirect()->route('index_listeprocessus')->with('success', 'Mise à jour éffectuée.');
         }
 
-        return redirect()->back()->with('error', 'Echec de la mise à jour.');
+        return redirect()->route('index_listeprocessus')->with('error', 'Echec de la mise à jour.');
     }
     
 }

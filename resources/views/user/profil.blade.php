@@ -463,41 +463,6 @@
         });
     </script>
 
-<div class="modal fade" role="dialog" id="profile-edit-mdp">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-        <div class="modal-content"><a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-            <div class="modal-body modal-body-lg">
-                <h5 class="title">Mise à jour</h5>
-                <ul class="nk-nav nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#personal">Securité</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="personal">
-                        <div class="row gy-4">
-                            <div class="col-lg-12">
-                                <div class="form-control-wrap"><a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password"></a><input autocomplete="off" type="password" class="form-control form-control-lg " id="password2" placeholder="Saisie le nouveau mot de passe" name="mdp_new"></div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-control-wrap"><a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password"></a><input autocomplete="off" type="password" class="form-control form-control-lg " id="password3" placeholder="Confirmer le nouveau mot de passe" name="mdp_new_conf"></div>
-                            </div>
-                            <div class="col-12">
-                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                                    <li>
-                                        <button id="btn_change_mdp" class="btn btn-lg btn-success btn-dim">
-                                            <em class="ni ni-check me-2 "></em>
-                                            <em >Enregistrer</em>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     var inputElement = document.getElementById('tel');
     inputElement.addEventListener('input', function() {

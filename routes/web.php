@@ -76,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/Nouveau Processus', [ProcessusController::class, 'index_add_processus'])->name('index_add_processus');
         Route::post('/traitement processus', [ProcessusController::class, 'add_processus'])->name('add_processus');
         Route::get('/Liste Processus', [ListeprocessusController::class, 'index_listeprocessus'])->name('index_listeprocessus');
+        Route::post('/modif processus', [ListeprocessusController::class, 'index_processus_modif'])->name('index_processus_modif');
         Route::post('/traitement modif processus', [ListeprocessusController::class, 'processus_modif'])->name('processus_modif');
         Route::get('/Evaluation des processus', [EvaluationController::class, 'index_processus'])->name('index_evaluation_processus');
     /*----------------------------------------------------------------------------------------------------------------------------*/
